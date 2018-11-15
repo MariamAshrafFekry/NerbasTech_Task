@@ -1,0 +1,5 @@
+to run project
+1- create localDB with name SongsDB
+2- change your connection string as follow
+ SongsApp folder -> web.config add your connection string in line 14
+3-compile and run project

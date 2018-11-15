@@ -1,0 +1,12 @@
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\DAL.dll.config
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\DAL.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\DAL.pdb
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\EntityFramework.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\EntityFramework.xml
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\obj\Debug\DAL.csproj.CopyComplete
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\obj\Debug\DAL.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\obj\Debug\DAL.pdb
+C:\Users\Mariam Ashraf\Desktop\SongsApp\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

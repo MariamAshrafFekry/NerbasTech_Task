@@ -1,0 +1,15 @@
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\BLL.dll.config
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\BLL.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\BLL.pdb
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\DAL.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\EntityFramework.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\DAL.pdb
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\DAL.dll.config
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\EntityFramework.xml
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\obj\Debug\BLL.csprojAssemblyReference.cache
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\obj\Debug\BLL.csproj.CoreCompileInputs.cache
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\obj\Debug\BLL.csproj.CopyComplete
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\obj\Debug\BLL.dll
+C:\Users\Mariam Ashraf\Desktop\SongsApp\BLL\obj\Debug\BLL.pdb

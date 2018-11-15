@@ -1,0 +1,15 @@
+﻿.form-control:read-only {
+    background-color: #ffffff;
+}
+.input-group {
+    margin-bottom: 1em;
+}
+.file-upload {
+    background-color: #c1f0ec;
+    font-weight: bold;
+}
+.addSong
+{
+    margin-right:50%;
+    margin-top:10px;
+}

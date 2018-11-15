@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,6 +8,12 @@ using System.Web;
 namespace SongsApp.Models
 {
     public class SongViewModels
+    {
+        public SongViewModel songModel { get; set; }
+        public string id { get; set; }
+        public List<Songs> songs { get; set; }
+    }
+    public class SongViewModel
     {
         public Guid ID { get; set; }
         [Required(ErrorMessage = "Song Name is Required")]

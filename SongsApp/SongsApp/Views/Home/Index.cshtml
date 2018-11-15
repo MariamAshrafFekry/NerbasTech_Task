@@ -1,10 +1,50 @@
 ﻿@model SongsApp.Models.SongViewModels
 @{
-    ViewBag.Title = "Home Page";
+        ViewBag.Title = "Home Page";
 }
-<button type="button" class="btn btn-info btn-lg addSong" data-toggle="modal" data-target="#addSongModal">Add Song</button>
+<button type="button" class="col-md-2 col-md-offset-5 btn btn-basic btn-lg addSongs" data-toggle="modal" data-target="#addSongModal">Add Song</button>
+<br /><br /><br /><hr />
+<center>
+    <h2 class="head2">Your Songs</h2>
+</center>
 <hr />
-<h2>Your Songs</h2>
+
+@for(int i = 0; i <Model.songs.Count(); i++)
+{
+    <div class="data">
+        <h3>@Model.songs.ElementAt(i).SongName</h3>
+        <img src="@Model.songs.ElementAt(i).image" class="md-col-2 iimg" />
+        <span class="col-md-2">@Model.songs.ElementAt(i).AlbumName</span>
+        <span class="col-md-2">@Model.songs.ElementAt(i).SingerName</span>
+        <audio controls class="col-md-3 audio">
+            <source src="@Model.songs.ElementAt(i).song" type="audio/mp3" />
+        </audio>
+        <button type="button" class="btn btn-danger btn-lg deleteSong" data-toggle="modal" data-target="#deleteSongModal-@i">Delete</button>
+    </div>
+    <hr />
+    <div id="deleteSongModal-@i" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Delete Song</h4>
+                </div>
+                <form action="/Song/DeleteSong/id=@i" method="post">
+                    <div class="modal-body">
+                        <p>Are You Sure ?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+}
+
+
 <div id="addSongModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -16,64 +56,65 @@
 
                 @using (Html.BeginForm("AddSong", "Song", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
+                <center>
                     <div class="form-group">
-                        @Html.LabelFor(m => m.SongName, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.SongName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.SongName, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.songModel.SongName, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.songModel.SongName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.songModel.SongName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.SingerName, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.SingerName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.SingerName, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.songModel.SingerName, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.songModel.SingerName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.songModel.SingerName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group">
-                        @Html.LabelFor(m => m.AlbumName, new { @class = "col-md-2 control-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.AlbumName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.AlbumName, "", new { @class = "text-danger" })
+                        @Html.LabelFor(m => m.songModel.AlbumName, new { @class = "col-md-3 control-label" })
+                        <div class="col-md-9">
+                            @Html.TextBoxFor(m => m.songModel.AlbumName, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.songModel.AlbumName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
 
-                    <div class="input-group">
-                        @Html.LabelFor(m => m.image, new { @class = "col-md-2 control-label" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.songModel.image, new { @class = "col-md-3 control-label" })
                         <label class="input-group-btn">
                             <span class="btn btn-default file-upload">
-                                &hellip;@Html.TextBoxFor(m => m.image, new { @Type = "file", @Class = "file-upload" })
+                                @Html.TextBoxFor(m => m.songModel.image, new { @Type = "file", @Class = "file-upload" })
                             </span>
                         </label>
-                        <input type="text" class="form-control" readonly>
-                        @Html.ValidationMessageFor(m => m.image, "", new { @Class = "text-danger" })
+                        <input type="text" class="form-control readonly" readonly>
+                        @Html.ValidationMessageFor(m => m.songModel.image, "", new { @Class = "text-danger" })
                     </div>
 
-                    <div class="input-group">
-                        @Html.LabelFor(m => m.NationalID, new { @class = "col-md-2 control-label" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.songModel.NationalID, new { @class = "col-md-3 control-label" })
                         <label class="input-group-btn">
                             <span class="btn btn-default file-upload">
-                                &hellip;@Html.TextBoxFor(m => m.NationalID, new { @Type = "file", @Class = "file-upload" })
+                                @Html.TextBoxFor(m => m.songModel.NationalID, new { @Type = "file", @Class = "file-upload" })
                             </span>
                         </label>
-                        <input type="text" class="form-control" readonly>
-                        @Html.ValidationMessageFor(m => m.NationalID, "", new { @Class = "text-danger" })
+                        <input type="text" class="form-control readonly" readonly>
+                        @Html.ValidationMessageFor(m => m.songModel.NationalID, "", new { @Class = "text-danger" })
                     </div>
 
-                    <div class="input-group">
-                        @Html.LabelFor(m => m.song, new { @class = "col-md-2 control-label" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.songModel.song, new { @class = "col-md-3 control-label" })
                         <label class="input-group-btn">
                             <span class="btn btn-default file-upload">
-                                &hellip;@Html.TextBoxFor(m => m.song, new { @Type = "file", @Class = "file-upload" })
+                                @Html.TextBoxFor(m => m.songModel.song, new { @Type = "file", @Class = "file-upload" })
                             </span>
                         </label>
-                        <input type="text" class="form-control" readonly>
-                        @Html.ValidationMessageFor(m => m.song, "", new { @Class = "text-danger" })
+                        <input type="text" class="form-control readonly" readonly>
+                        @Html.ValidationMessageFor(m => m.songModel.song, "", new { @Class = "text-danger" })
                     </div>
-          
+                </center>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Add</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -87,3 +128,40 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<style>
+    .iimg {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: inline;
+        float: left;
+    }
+    .data
+    {
+        text-align:center;
+    }
+    .head2 {
+        font-family: cursive;
+        color: #cd54a9;
+    }
+    .addSongs {
+        margin-top: 10px;
+        border-radius: 15px;
+        font-family: cursive;
+        
+    }
+    .form-control:read-only {
+        background-color: #ffffff;
+    }
+
+    .form-control {
+        margin-bottom: 1em;
+        margin-bottom:10px;
+    }
+    .readonly {
+        border: 0px;
+        height: 0px;
+        padding:0px;
+        width:10px;
+    }
+</style>

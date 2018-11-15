@@ -51,6 +51,8 @@ namespace DAL
         [StringLength(256)]
         public string AccountNumber { get; set; }
 
+        public virtual ICollection<Songs> songs { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
 

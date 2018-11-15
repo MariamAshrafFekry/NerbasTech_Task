@@ -15,6 +15,6 @@ namespace DAL
         public byte[] image { get; set; }
         public byte[] song { get; set; }
         public byte[] nationalID { get; set; }
-        public AspNetUsers user { get; set; }
+        public virtual AspNetUsers user { get; set; }
     }
 }

@@ -8,15 +8,18 @@ using SongsApp.Models;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Diagnostics;
+using DAL;
 
 namespace SongsApp.Controllers
 {
     public class SongController : Controller
     {
         public SongLogic songsLogic;
+        public UserLogic usersLogic;
         public SongController()
         {
             songsLogic = new SongLogic();
+            usersLogic = new UserLogic();
         }
         // GET: Song
         public ActionResult Index()
@@ -26,30 +29,36 @@ namespace SongsApp.Controllers
         [HttpPost]
         public ActionResult AddSong(SongViewModels model)
         {
-            Debug.Write(User.Identity.GetUserId<string>() + " LLL");
             DAL.Songs song = new DAL.Songs();
-            song.user.Id = User.Identity.GetUserId();
-            song.AlbumName = model.AlbumName;
-            song.SingerName = model.SingerName;
-            song.SongName = model.SongName;
-            using (var binaryReader = new BinaryReader(model.image.InputStream))
+            AspNetUsers u = new AspNetUsers();
+            song.ID = Guid.NewGuid();
+            u = usersLogic.getUser(User.Identity.GetUserId<string>());
+            song.user = new AspNetUsers();
+            song.user = u;
+            song.AlbumName = model.songModel.AlbumName;
+            song.SingerName = model.songModel.SingerName;
+            song.SongName = model.songModel.SongName;
+            using (var binaryReader = new BinaryReader(model.songModel.image.InputStream))
             {
-                song.image = binaryReader.ReadBytes(model.image.ContentLength);
+                song.image = binaryReader.ReadBytes(model.songModel.image.ContentLength);
             }
 
-            using (var binaryReader = new BinaryReader(model.song.InputStream))
+            using (var binaryReader = new BinaryReader(model.songModel.song.InputStream))
             {
-                song.song = binaryReader.ReadBytes(model.song.ContentLength);
+                song.song = binaryReader.ReadBytes(model.songModel.song.ContentLength);
             }
 
-            using (var binaryReader = new BinaryReader(model.NationalID.InputStream))
+            using (var binaryReader = new BinaryReader(model.songModel.NationalID.InputStream))
             {
-                song.nationalID = binaryReader.ReadBytes(model.NationalID.ContentLength);
+                song.nationalID = binaryReader.ReadBytes(model.songModel.NationalID.ContentLength);
             }
-            Debug.WriteLine(song.SingerName + " " + song.SongName + " " + song.AlbumName);
-            Debug.WriteLine(song.image + "  " + song.nationalID + "  " + song.song);
             songsLogic.add(song);
-            return View("Index", "Home");
+            return RedirectToAction("Index", "Home");
+        }
+        public ActionResult DeleteSong(string id)
+        {
+            songsLogic.delete(id);
+            return RedirectToAction("Index", "Home");
         }
     }
 }

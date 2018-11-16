@@ -14,31 +14,55 @@ namespace SongsApp.Controllers
 {
     public class SongController : Controller
     {
-        public SongLogic songsLogic;
-        public UserLogic usersLogic;
+        private SongLogic _songsLogic;
+        private UserLogic _usersLogic;
         public SongController()
         {
-            songsLogic = new SongLogic();
-            usersLogic = new UserLogic();
+        }
+
+        public UserLogic UserLogic
+        {
+            get
+            {
+                return _usersLogic ?? new UserLogic();
+            }
+            private set
+            {
+                _usersLogic = value;
+            }
+        }
+
+        public SongLogic SongLogic
+        {
+            get
+            {
+                return _songsLogic ?? new SongLogic();
+            }
+            private set
+            {
+                _songsLogic = value;
+            }
         }
         // GET: Song
         public ActionResult Index()
         {
             return View("View");
         }
+        // Add Song to Database
         [HttpPost]
         public ActionResult AddSong(SongViewModels model)
         {
             DAL.Songs song = new DAL.Songs();
             AspNetUsers u = new AspNetUsers();
             song.ID = Guid.NewGuid();
-            u = usersLogic.getUser(User.Identity.GetUserId<string>());
+            u = UserLogic.getUser(User.Identity.GetUserId<string>());
             song.user = new AspNetUsers();
             song.user = u;
             song.user_Id = User.Identity.GetUserId<string>();
             song.AlbumName = model.songModel.AlbumName;
             song.SingerName = model.songModel.SingerName;
             song.SongName = model.songModel.SongName;
+            // convert image httpPostedFileWrapper to byte[]
             using (var binaryReader = new BinaryReader(model.songModel.image.InputStream))
             {
                 song.image = binaryReader.ReadBytes(model.songModel.image.ContentLength);
@@ -53,12 +77,13 @@ namespace SongsApp.Controllers
             {
                 song.nationalID = binaryReader.ReadBytes(model.songModel.NationalID.ContentLength);
             }
-            songsLogic.add(song);
+            SongLogic.add(song);
             return RedirectToAction("Index", "Home");
         }
+        // delete song
         public ActionResult DeleteSong(string id)
         {
-            songsLogic.delete(id);
+            SongLogic.delete(id);
             return RedirectToAction("Index", "Home");
         }
     }

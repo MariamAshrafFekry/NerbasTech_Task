@@ -1,6 +1,6 @@
 ﻿@model SongsApp.Models.SongViewModels
 @{
-        ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 <button type="button" class="col-md-2 col-md-offset-5 btn btn-basic btn-lg addSongs" data-toggle="modal" data-target="#addSongModal">Add Song</button>
 <br /><br /><br /><hr />
@@ -9,19 +9,20 @@
 </center>
 <hr />
 
-@for(int i = 0; i <Model.songs.Count(); i++)
+@for (int i = 0; i < Model.songs.Count(); i++)
 {
-<div class="data">
-    <h3>@Model.songs.ElementAt(i).SongName</h3>
-    <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.songs.ElementAt(i).image))" class="md-col-2 iimg" />
-    <span class="col-md-2">@Model.songs.ElementAt(i).AlbumName</span>
-    <span class="col-md-2">@Model.songs.ElementAt(i).SingerName</span>
-    <audio controls class="col-md-3 audio">
-        <source src="@Model.songs.ElementAt(i).song" type="audio/mp3" />
-    </audio>
-    <button type="button" class="btn btn-danger btn-lg deleteSong" data-toggle="modal" data-target="#deleteSongModal-@i">Delete</button>
-</div>
+    <div class="data">
+        <h3>@Model.songs.ElementAt(i).SongName</h3>
+        <img src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.songs.ElementAt(i).image))" class="md-col-2 iimg" />
+        <span class="col-md-2">@Model.songs.ElementAt(i).AlbumName</span>
+        <span class="col-md-2">@Model.songs.ElementAt(i).SingerName</span>
+        <audio controls class="col-md-3 audio">
+            <source src="@String.Format("data:image/gif;base64,{0}", Convert.ToBase64String(Model.songs.ElementAt(i).song))" type="audio/mp3" />
+        </audio>
+        <button type="button" class="btn btn-danger btn-lg deleteSong" data-toggle="modal" data-target="#deleteSongModal-@i">Delete</button>
+    </div>
     <hr />
+    <!--Start Delete Song Modal-->
     <div id="deleteSongModal-@i" class="modal fade" role="dialog">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -42,8 +43,11 @@
 
         </div>
     </div>
+    <!--End Delete Song Modal-->
+
 }
 
+<!--Start Add Song Modal-->
 
 <div id="addSongModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
@@ -56,65 +60,65 @@
 
                 @using (Html.BeginForm("AddSong", "Song", FormMethod.Post, new { enctype = "multipart/form-data" }))
                 {
-                <center>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.songModel.SongName, new { @class = "col-md-3 control-label" })
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(m => m.songModel.SongName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.songModel.SongName, "", new { @class = "text-danger" })
+                    <center>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.songModel.SongName, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.songModel.SongName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.songModel.SongName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.songModel.SingerName, new { @class = "col-md-3 control-label" })
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(m => m.songModel.SingerName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.songModel.SingerName, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.songModel.SingerName, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.songModel.SingerName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.songModel.SingerName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.songModel.AlbumName, new { @class = "col-md-3 control-label" })
-                        <div class="col-md-9">
-                            @Html.TextBoxFor(m => m.songModel.AlbumName, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.songModel.AlbumName, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.songModel.AlbumName, new { @class = "col-md-3 control-label" })
+                            <div class="col-md-9">
+                                @Html.TextBoxFor(m => m.songModel.AlbumName, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.songModel.AlbumName, "", new { @class = "text-danger" })
+                            </div>
                         </div>
-                    </div>
 
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.songModel.image, new { @class = "col-md-3 control-label" })
-                        <label class="input-group-btn">
-                            <span class="btn btn-default file-upload">
-                                @Html.TextBoxFor(m => m.songModel.image, new { @Type = "file", @Class = "file-upload" })
-                            </span>
-                        </label>
-                        <input type="text" class="form-control readonly" readonly>
-                        @Html.ValidationMessageFor(m => m.songModel.image, "", new { @Class = "text-danger" })
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.songModel.image, new { @class = "col-md-3 control-label" })
+                            <label class="input-group-btn">
+                                <span class="btn btn-default file-upload">
+                                    @Html.TextBoxFor(m => m.songModel.image, new { @Type = "file", @Class = "file-upload" })
+                                </span>
+                            </label>
+                            <input type="text" class="form-control readonly" readonly>
+                            @Html.ValidationMessageFor(m => m.songModel.image, "", new { @Class = "text-danger" })
+                        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.songModel.NationalID, new { @class = "col-md-3 control-label" })
-                        <label class="input-group-btn">
-                            <span class="btn btn-default file-upload">
-                                @Html.TextBoxFor(m => m.songModel.NationalID, new { @Type = "file", @Class = "file-upload" })
-                            </span>
-                        </label>
-                        <input type="text" class="form-control readonly" readonly>
-                        @Html.ValidationMessageFor(m => m.songModel.NationalID, "", new { @Class = "text-danger" })
-                    </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.songModel.NationalID, new { @class = "col-md-3 control-label" })
+                            <label class="input-group-btn">
+                                <span class="btn btn-default file-upload">
+                                    @Html.TextBoxFor(m => m.songModel.NationalID, new { @Type = "file", @Class = "file-upload" })
+                                </span>
+                            </label>
+                            <input type="text" class="form-control readonly" readonly>
+                            @Html.ValidationMessageFor(m => m.songModel.NationalID, "", new { @Class = "text-danger" })
+                        </div>
 
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.songModel.song, new { @class = "col-md-3 control-label" })
-                        <label class="input-group-btn">
-                            <span class="btn btn-default file-upload">
-                                @Html.TextBoxFor(m => m.songModel.song, new { @Type = "file", @Class = "file-upload" })
-                            </span>
-                        </label>
-                        <input type="text" class="form-control readonly" readonly>
-                        @Html.ValidationMessageFor(m => m.songModel.song, "", new { @Class = "text-danger" })
-                    </div>
-                </center>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.songModel.song, new { @class = "col-md-3 control-label" })
+                            <label class="input-group-btn">
+                                <span class="btn btn-default file-upload">
+                                    @Html.TextBoxFor(m => m.songModel.song, new { @Type = "file", @Class = "file-upload" })
+                                </span>
+                            </label>
+                            <input type="text" class="form-control readonly" readonly>
+                            @Html.ValidationMessageFor(m => m.songModel.song, "", new { @Class = "text-danger" })
+                        </div>
+                    </center>
                     <div class="modal-footer">
                         <button type="submit" class="btn btn-danger">Add</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -124,6 +128,7 @@
         </div>
     </div>
 </div>
+<!--End Add Song Modal-->
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -136,32 +141,35 @@
         display: inline;
         float: left;
     }
-    .data
-    {
-        text-align:center;
+
+    .data {
+        text-align: center;
     }
+
     .head2 {
         font-family: cursive;
         color: #cd54a9;
     }
+
     .addSongs {
         margin-top: 10px;
         border-radius: 15px;
         font-family: cursive;
-        
     }
+
     .form-control:read-only {
         background-color: #ffffff;
     }
 
     .form-control {
         margin-bottom: 1em;
-        margin-bottom:10px;
+        margin-bottom: 10px;
     }
+
     .readonly {
         border: 0px;
         height: 0px;
-        padding:0px;
-        width:10px;
+        padding: 0px;
+        width: 10px;
     }
 </style>

@@ -29,7 +29,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Delete Song</h4>
                 </div>
-                <form action="/Song/DeleteSong/id=@i" method="post">
+                <form action="/Song/DeleteSong?id=@Model.songs.ElementAt(i).ID" method="post">
                     <div class="modal-body">
                         <p>Are You Sure ?</p>
                     </div>

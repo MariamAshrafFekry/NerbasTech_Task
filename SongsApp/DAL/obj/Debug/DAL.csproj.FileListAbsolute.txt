@@ -1,0 +1,12 @@
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\DAL.dll.config
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\DAL.dll
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\DAL.pdb
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\EntityFramework.dll
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\EntityFramework.SqlServer.dll
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\EntityFramework.xml
+F:\material\task\NerbasTech_Task\SongsApp\DAL\bin\Debug\EntityFramework.SqlServer.xml
+F:\material\task\NerbasTech_Task\SongsApp\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+F:\material\task\NerbasTech_Task\SongsApp\DAL\obj\Debug\DAL.csproj.CopyComplete
+F:\material\task\NerbasTech_Task\SongsApp\DAL\obj\Debug\DAL.dll
+F:\material\task\NerbasTech_Task\SongsApp\DAL\obj\Debug\DAL.pdb
+F:\material\task\NerbasTech_Task\SongsApp\DAL\obj\Debug\DAL.csprojAssemblyReference.cache

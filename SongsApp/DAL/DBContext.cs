@@ -10,5 +10,7 @@ namespace DAL
     {
         public DbSet<AspNetUsers> users { get; set; }
         public DbSet<Songs> songs { get; set; }
+
+        public DBContext() : base("DataBase") { }
     }
 }

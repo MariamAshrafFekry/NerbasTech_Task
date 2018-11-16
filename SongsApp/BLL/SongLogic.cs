@@ -39,7 +39,7 @@ namespace BLL
         }
         public List<Songs> getUserSongs(string usrId)
         {
-            return dBContext.songs.Where(s => s.user.Id.ToString() == usrId).ToList();
+            return dBContext.songs.Where(s => s.user_Id.ToString() == usrId).ToList();
         }
     }
 }

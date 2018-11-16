@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using BLL;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -17,17 +18,29 @@ namespace SongsApp.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private UserLogic _userLogic;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, UserLogic userlogic)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            UserLogic = userlogic;
         }
-
+        public UserLogic UserLogic
+        {
+            get
+            {
+                return _userLogic ?? new UserLogic();
+            }
+            private set
+            {
+                _userLogic = value;
+            }
+        }
         public ApplicationSignInManager SignInManager
         {
             get
@@ -59,6 +72,14 @@ namespace SongsApp.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+        }
+        [AllowAnonymous]
+        public ActionResult IsEmailExists(string Email)
+        {
+            if (UserLogic.IsEmailExists(Email))
+                return Json(false, JsonRequestBehavior.AllowGet);
+            else
+                return Json(true, JsonRequestBehavior.AllowGet);
         }
 
         //

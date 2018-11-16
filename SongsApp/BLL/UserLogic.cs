@@ -17,7 +17,7 @@ namespace BLL
         }
         public bool IsEmailExists(string email)
         {
-            return dBContext.users.Any(citizen => citizen.Email == email);
+            return dBContext.users.Any(user => user.Email == email);
         }
         public AspNetUsers getUser(string id)
         {

@@ -77,6 +77,7 @@ namespace SongsApp.Models
         [Required(ErrorMessage ="Please Enter Your E-mail")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w)+)+)$|^\+?\d{0,2}\-?\d{4,5}\-?\d{5,6}", ErrorMessage = "Please enter a valid email address")]
         [Display(Name = "Email")]
+        [Remote("IsEmailExists", "Account", ErrorMessage = "Email Already Exist.")]
         public string Email { get; set; }
 
         [Required(ErrorMessage ="Please Enter Password")]

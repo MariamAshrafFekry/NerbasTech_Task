@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using System.Diagnostics;
 using DAL;
+using System.Web.Script.Serialization;
 
 namespace SongsApp.Controllers
 {
@@ -85,6 +86,14 @@ namespace SongsApp.Controllers
         {
             SongLogic.delete(id);
             return RedirectToAction("Index", "Home");
+        }
+        // get all songs
+        public JsonResult GetAllSongs()
+        {
+            List<Songs> allsongs = SongLogic.getAllSongs();
+            var songs = allsongs.Select(s => new { Name=s.SongName, song= string.Format("data:audio/mp3;base64,{0}", Convert.ToBase64String(s.song))});
+            int count = allsongs.Count();
+            return Json(new { songs, count});
         }
     }
 }

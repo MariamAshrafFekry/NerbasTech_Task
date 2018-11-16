@@ -1,4 +1,5 @@
 to run project
+- create database 
 - change your connection string as follow
  SongsApp folder -> web.config and App.config then add your connection string
 -build and run project

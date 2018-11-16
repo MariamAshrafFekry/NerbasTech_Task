@@ -1,5 +1,20 @@
 to run project
-1- create localDB with name SongsDB
-2- change your connection string as follow
- SongsApp folder -> web.config add your connection string in line 14
-3-compile and run project
+- change your connection string as follow
+ SongsApp folder -> web.config and App.config then add your connection string
+-build and run project
+
+packages needed Entity Framework
+right click on project -> Manage NuGet Packages
+ -> Write Entity Framework -> install 
+
+migration to be reflected to db
+tools -> NuGet Oackage Manager -> Package Manager Console
+then console will open write
+1- enable-migrations
+2- add-migration Migration_Name
+3- update-database
+
+
+
+
+ 

@@ -35,6 +35,7 @@ namespace SongsApp.Controllers
             u = usersLogic.getUser(User.Identity.GetUserId<string>());
             song.user = new AspNetUsers();
             song.user = u;
+            song.user_id = User.Identity.GetUserId<string>();
             song.AlbumName = model.songModel.AlbumName;
             song.SingerName = model.songModel.SingerName;
             song.SongName = model.songModel.SongName;
